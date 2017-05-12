@@ -22,10 +22,12 @@ EndEvent
 Ammo Function getAmmo()
 	int i = 0
 	Actor act = self.GetActorRef()
+	int listSize = FPPAmmoList.GetSize()
 	
-	while (i < FPPAmmoList.GetSize())
-		if (act.IsEquipped(FPPAmmoList.GetAt(i)))
-			return FPPAmmoList.GetAt(i) as Ammo
+	while (i < listSize)
+		Ammo arrow = FPPAmmoList.GetAt(i) as Ammo
+		if (act.IsEquipped(arrow))
+			return arrow
 		endif
 		i += 1
 	endwhile
