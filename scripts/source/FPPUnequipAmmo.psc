@@ -1,16 +1,24 @@
 Scriptname FPPUnequipAmmo extends ReferenceAlias  
 
 Event OnObjectUnequipped(Form akBaseObject, ObjectReference akReference)
+	Actor act = self.GetActorRef()
+	if (!act.WornHasKeyword(VendorItemArrow))
+		return
+	endif
+	
 	Weapon wpn = akBaseObject as Weapon
-
+	
 	if (wpn)
-		Actor act = self.GetActorRef()
-		if (!act.WornHasKeyword(VendorItemArrow))
-			return
-		endif
-		
 		int wpntype = wpn.GetWeaponType()
 		if (wpntype == 7 || wpntype == 9) ; bow & crossbow
+			Ammo eqammo = self.getAmmo()
+			if (eqammo)
+				act.UnEquipItem(eqammo)
+			endif
+		endif
+	else
+		int handledwpntype = act.GetEquippedItemType(0)
+		if (handledwpntype == 7 || handledwpntype == 9)
 			Ammo eqammo = self.getAmmo()
 			if (eqammo)
 				act.UnEquipItem(eqammo)
