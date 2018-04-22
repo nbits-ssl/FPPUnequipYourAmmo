@@ -1,4 +1,15 @@
-Scriptname FPPUnequipAmmo extends ReferenceAlias  
+Scriptname FPPUnequipAmmo extends ReferenceAlias
+
+Event OnLoad()
+	Actor act = self.GetActorRef()
+	Location loc = act.GetCurrentLocation()
+	
+	if (loc.HasKeyWord(LocTypeInn) || loc.HasKeyWord(LocTypePlayerHouse))
+		act.UnequipItemSlot(46)
+		act.UnequipItemSlot(47)
+		act.UnequipItemSlot(56)
+	endif
+EndEvent
 
 Event OnObjectUnequipped(Form akBaseObject, ObjectReference akReference)
 	Actor act = self.GetActorRef()
@@ -45,3 +56,6 @@ EndFunction
 
 Keyword Property VendorItemArrow  Auto  
 FormList Property FPPAmmoList  Auto  
+Keyword Property LocTypeInn  Auto  
+
+Keyword Property LocTypePlayerHouse  Auto  
