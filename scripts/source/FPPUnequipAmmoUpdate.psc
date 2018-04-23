@@ -6,7 +6,7 @@ EndEvent
 
 Event OnUpdate()
 	if (FPPAUA.IsRunning())
-		FPPAUA.Reset()
+		FPPAUA.Stop()
 		FPPAUA.Start()
 	else
 		FPPAUA.Start()
