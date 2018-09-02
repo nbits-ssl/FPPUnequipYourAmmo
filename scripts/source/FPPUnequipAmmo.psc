@@ -4,7 +4,7 @@ Event OnLoad()
 	Actor act = self.GetActorRef()
 	Location loc = act.GetCurrentLocation()
 	
-	if (loc.HasKeyWord(LocTypeInn) || loc.HasKeyWord(LocTypePlayerHouse))
+	if (loc && (loc.HasKeyWord(LocTypeInn) || loc.HasKeyWord(LocTypePlayerHouse)))
 		act.UnequipItemSlot(46)
 		act.UnequipItemSlot(47)
 		act.UnequipItemSlot(56)
